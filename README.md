@@ -7,7 +7,7 @@ MemoVoice 是一款 macOS 原生語音轉文字應用程式，使用 [WhisperKit
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue)
 ![Swift 6](https://img.shields.io/badge/Swift-6-orange)
 ![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-purple)
-![License](https://img.shields.io/badge/License-Private-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## 功能特色
 
@@ -158,4 +158,4 @@ MemoVoice/
 
 ## 授權
 
-本專案為私人專案。
+MIT License

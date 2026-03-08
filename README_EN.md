@@ -7,7 +7,7 @@ MemoVoice is a native macOS speech-to-text application powered by [WhisperKit](h
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue)
 ![Swift 6](https://img.shields.io/badge/Swift-6-orange)
 ![SwiftUI](https://img.shields.io/badge/UI-SwiftUI-purple)
-![License](https://img.shields.io/badge/License-Private-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Features
 
@@ -158,4 +158,4 @@ MemoVoice/
 
 ## License
 
-This is a private project.
+MIT License
