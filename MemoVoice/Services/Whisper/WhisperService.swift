@@ -123,10 +123,10 @@ final class WhisperService {
 
         onProgress(String(localized: "Loading model..."), 1.0)
 
-        // Load WhisperKit from the model folder with Neural Engine acceleration
+        // Load WhisperKit with all compute units (CPU + GPU + Neural Engine)
         let computeOptions = ModelComputeOptions(
-            audioEncoderCompute: .cpuAndNeuralEngine,
-            textDecoderCompute: .cpuAndNeuralEngine
+            audioEncoderCompute: .all,
+            textDecoderCompute: .all
         )
         let config = WhisperKitConfig(
             modelFolder: modelFolder,
@@ -138,6 +138,15 @@ final class WhisperService {
         isModelLoaded = true
     }
 
+    /// Preload the default model at app startup so it's ready when needed
+    func preloadDefaultModel() {
+        let modelName = AppState.shared.selectedModel
+        guard !isModelLoaded || loadedModelName != modelName else { return }
+        Task {
+            try? await loadModel(modelName) { _, _ in }
+        }
+    }
+
     /// Check if a model has been downloaded to disk
     func isModelDownloaded(_ modelName: String) -> Bool {
         let cacheKey = Self.modelFolderKeyPrefix + modelName
@@ -145,6 +154,32 @@ final class WhisperService {
             return false
         }
         return FileManager.default.fileExists(atPath: cachedPath)
+    }
+
+    /// Get the cached folder path for a model
+    func modelFolderPath(_ modelName: String) -> String? {
+        let cacheKey = Self.modelFolderKeyPrefix + modelName
+        guard let cachedPath = UserDefaults.standard.string(forKey: cacheKey),
+              FileManager.default.fileExists(atPath: cachedPath) else {
+            return nil
+        }
+        return cachedPath
+    }
+
+    /// Delete a single model from disk
+    func deleteModel(_ modelName: String) {
+        let cacheKey = Self.modelFolderKeyPrefix + modelName
+        if let cachedPath = UserDefaults.standard.string(forKey: cacheKey) {
+            try? FileManager.default.removeItem(atPath: cachedPath)
+        }
+        UserDefaults.standard.removeObject(forKey: cacheKey)
+
+        // If we just deleted the currently loaded model, unload it
+        if loadedModelName == modelName {
+            whisperKit = nil
+            isModelLoaded = false
+            loadedModelName = nil
+        }
     }
 
     /// Transcribe an audio file with real-time progress via WhisperKit callback.

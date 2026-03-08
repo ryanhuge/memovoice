@@ -2,44 +2,70 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @AppStorage("selectedModel") private var selectedModel = "large-v3_turbo"
-    @AppStorage("chunkDuration") private var chunkDuration: Double = 30.0
-    @AppStorage("overlapDuration") private var overlapDuration: Double = 2.0
     @AppStorage("targetLanguage") private var targetLanguage = "zh-TW"
+    @State private var modelManager = ModelManager()
+    @State private var confirmDelete: String?
 
     var body: some View {
         Form {
-            Section("Whisper Model") {
+            Section("Default Model") {
                 Picker("Default Model", selection: $selectedModel) {
-                    Text("Tiny (~75MB, fastest)").tag("tiny")
-                    Text("Base (~140MB)").tag("base")
-                    Text("Small (~466MB)").tag("small")
-                    Text("Medium (~1.5GB)").tag("medium")
-                    Text("Large V3 (~2.9GB, most accurate)").tag("large-v3")
-                    Text("Large V3 Turbo (~1.6GB, recommended)").tag("large-v3_turbo")
-                }
-
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text("Chunk Duration:")
-                        Text("\(Int(chunkDuration))s")
-                            .monospacedDigit()
+                    ForEach(ModelManager.ModelInfo.predefined) { model in
+                        Text("\(model.displayName) (\(model.size))").tag(model.name)
                     }
-                    Slider(value: $chunkDuration, in: 15...60, step: 5)
-                    Text("Duration of each audio chunk for processing. Smaller = less memory, more overhead.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
+            }
 
-                VStack(alignment: .leading) {
+            Section("Model Management") {
+                ForEach(modelManager.availableModels) { model in
                     HStack {
-                        Text("Overlap:")
-                        Text("\(Int(overlapDuration))s")
-                            .monospacedDigit()
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 6) {
+                                Text(model.displayName)
+                                    .fontWeight(model.name == selectedModel ? .semibold : .regular)
+                                if model.name == selectedModel {
+                                    Text("Default")
+                                        .font(.caption2)
+                                        .padding(.horizontal, 5)
+                                        .padding(.vertical, 1)
+                                        .background(.blue.opacity(0.15))
+                                        .clipShape(Capsule())
+                                }
+                            }
+                            Text(model.size)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+
+                        Spacer()
+
+                        if modelManager.downloadingModel == model.name {
+                            ProgressView(value: modelManager.downloadProgress)
+                                .frame(width: 80)
+                            Text("\(Int(modelManager.downloadProgress * 100))%")
+                                .font(.caption)
+                                .monospacedDigit()
+                                .frame(width: 36)
+                        } else if model.isDownloaded {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                            Button {
+                                confirmDelete = model.name
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                            .buttonStyle(.borderless)
+                            .help("Delete model")
+                        } else {
+                            Button("Download") {
+                                Task {
+                                    await modelManager.downloadModel(model.name)
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .controlSize(.small)
+                        }
                     }
-                    Slider(value: $overlapDuration, in: 0...5, step: 0.5)
-                    Text("Overlap between chunks to prevent word splitting at boundaries.")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                 }
             }
 
@@ -53,5 +79,20 @@ struct GeneralSettingsView: View {
         }
         .formStyle(.grouped)
         .navigationTitle("General")
+        .onAppear { modelManager.refreshModels() }
+        .alert("Delete Model?", isPresented: Binding(
+            get: { confirmDelete != nil },
+            set: { if !$0 { confirmDelete = nil } }
+        )) {
+            Button("Cancel", role: .cancel) { confirmDelete = nil }
+            Button("Delete", role: .destructive) {
+                if let name = confirmDelete {
+                    modelManager.deleteModel(name)
+                }
+                confirmDelete = nil
+            }
+        } message: {
+            Text("This model will need to be re-downloaded before use.")
+        }
     }
 }

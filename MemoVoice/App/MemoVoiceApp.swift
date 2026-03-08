@@ -9,6 +9,9 @@ struct MemoVoiceApp: App {
         WindowGroup {
             ContentView()
                 .environment(appDelegate.pendingFileImport)
+                .task {
+                    WhisperService.shared.preloadDefaultModel()
+                }
         }
         .modelContainer(for: [TranscriptionProject.self])
         .windowStyle(.titleBar)

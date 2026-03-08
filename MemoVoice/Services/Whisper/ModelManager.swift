@@ -25,12 +25,34 @@ final class ModelManager {
         ]
     }
 
-    func refreshModels() async {
+    func refreshModels() {
         let whisperService = WhisperService.shared
         self.availableModels = ModelInfo.predefined.map { info in
             var updated = info
             updated.isDownloaded = whisperService.isModelDownloaded(info.name)
             return updated
         }
+    }
+
+    func deleteModel(_ modelName: String) {
+        WhisperService.shared.deleteModel(modelName)
+        refreshModels()
+    }
+
+    func downloadModel(_ modelName: String) async {
+        downloadingModel = modelName
+        downloadProgress = 0
+        do {
+            try await WhisperService.shared.loadModel(modelName) { [weak self] _, progress in
+                Task { @MainActor in
+                    self?.downloadProgress = progress
+                }
+            }
+        } catch {
+            // Download failed silently
+        }
+        downloadingModel = nil
+        downloadProgress = 0
+        refreshModels()
     }
 }

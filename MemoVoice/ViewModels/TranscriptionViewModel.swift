@@ -63,9 +63,16 @@ final class TranscriptionViewModel {
                 guard let ytURL = project.sourceURL else {
                     throw TranscriptionError.noSourceFile
                 }
-                statusMessage = String(localized: "Downloading from YouTube...")
+                statusMessage = String(localized: "Fetching video info...")
                 project.status = .importing
                 let ytdlpService = YTDLPService()
+
+                // Fetch video title and update project
+                if let title = try? await ytdlpService.getVideoTitle(from: ytURL), !title.isEmpty {
+                    project.title = title
+                }
+
+                statusMessage = String(localized: "Downloading from YouTube...")
                 let downloadDir = FileManager.default.audioDirectory
                 audioURL = try await ytdlpService.downloadAudio(
                     from: ytURL,
