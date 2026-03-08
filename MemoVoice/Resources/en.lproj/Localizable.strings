@@ -1,0 +1,234 @@
+/* ============================================================
+   MemoVoice — English Localization
+   ============================================================ */
+
+// MARK: - Common
+"Cancel" = "Cancel";
+"Done" = "Done";
+"Delete" = "Delete";
+"Save" = "Save";
+"Copy" = "Copy";
+"Export" = "Export";
+"Retry" = "Retry";
+"Set" = "Set";
+"Edit" = "Edit";
+"Use" = "Use";
+
+// MARK: - Welcome View
+"MemoVoice" = "MemoVoice";
+"Local speech-to-text transcription\npowered by Whisper AI" = "Local speech-to-text transcription\npowered by Whisper AI";
+"Transcribe audio & video files" = "Transcribe audio & video files";
+"Multi-language recognition" = "Multi-language recognition";
+"One-click translation" = "One-click translation";
+"YouTube URL support" = "YouTube URL support";
+"Export to SRT, DOCX, TXT, Markdown" = "Export to SRT, DOCX, TXT, Markdown";
+"Text-to-speech playback" = "Text-to-speech playback";
+"AI meeting summaries" = "AI meeting summaries";
+"Import File" = "Import File";
+
+// MARK: - Sidebar
+"No Projects" = "No Projects";
+"Import an audio or video file to get started." = "Import an audio or video file to get started.";
+"Projects" = "Projects";
+
+// MARK: - Content View (Menu)
+"Import File / URL" = "Import File / URL";
+"Record Audio" = "Record Audio";
+"New Project" = "New Project";
+
+// MARK: - Import View
+"New Transcription" = "New Transcription";
+"Input Source" = "Input Source";
+"Audio/Video File" = "Audio/Video File";
+"YouTube URL" = "YouTube URL";
+"Project Title" = "Project Title";
+"Language" = "Language";
+"Model" = "Model";
+"Start Transcription" = "Start Transcription";
+"Change" = "Change";
+"Drag & drop or click to select" = "Drag & drop or click to select";
+"Supports: MP3, WAV, M4A, FLAC, MP4, MOV, MKV" = "Supports: MP3, WAV, M4A, FLAC, MP4, MOV, MKV";
+"Paste YouTube URL here..." = "Paste YouTube URL here...";
+"Valid YouTube URL" = "Valid YouTube URL";
+"Invalid YouTube URL" = "Invalid YouTube URL";
+
+// MARK: - Model Names
+"Tiny (~75MB)" = "Tiny (~75MB)";
+"Base (~140MB)" = "Base (~140MB)";
+"Small (~466MB)" = "Small (~466MB)";
+"Medium (~1.5GB)" = "Medium (~1.5GB)";
+"Large V3 (~2.9GB)" = "Large V3 (~2.9GB)";
+"Large V3 Turbo (~1.6GB)" = "Large V3 Turbo (~1.6GB)";
+"Tiny (~75MB, fastest)" = "Tiny (~75MB, fastest)";
+"Large V3 (~2.9GB, most accurate)" = "Large V3 (~2.9GB, most accurate)";
+"Large V3 Turbo (~1.6GB, recommended)" = "Large V3 Turbo (~1.6GB, recommended)";
+
+// MARK: - Recording View
+"Press the button to start recording" = "Press the button to start recording";
+"Apple Live Transcription" = "Apple Live Transcription";
+"Whisper Model" = "Whisper Model";
+"Save & Transcribe" = "Save & Transcribe";
+
+// MARK: - YouTube Import
+"Downloading from YouTube" = "Downloading from YouTube";
+"Preparing download..." = "Preparing download...";
+"Starting download..." = "Starting download...";
+"Download" = "Download";
+
+// MARK: - Transcription View (Toolbar)
+"Translation" = "Translation";
+"Toggle translation view" = "Toggle translation view";
+"Read Aloud" = "Read Aloud";
+"Text-to-speech" = "Text-to-speech";
+"Summary" = "Summary";
+"Generate meeting summary" = "Generate meeting summary";
+"Export transcript" = "Export transcript";
+"Transcription Failed" = "Transcription Failed";
+"An unknown error occurred." = "An unknown error occurred.";
+
+// MARK: - Segment List
+"Search transcript..." = "Search transcript...";
+
+// MARK: - Translation Control Bar
+"Translate to" = "Translate to";
+"Provider" = "Provider";
+"Translating…" = "Translating...";
+"Translate All" = "Translate All";
+"Translated to: %@" = "Translated to: %@";
+
+// MARK: - TTS Control
+"TTS" = "TTS";
+"Voice" = "Voice";
+"Source" = "Source";
+"Original" = "Original";
+"Translated" = "Translated";
+"Speak" = "Speak";
+"Stop" = "Stop";
+
+// MARK: - Export Sheet
+"Export Transcript" = "Export Transcript";
+"Include timecodes" = "Include timecodes";
+"Include translation" = "Include translation";
+
+// MARK: - Meeting Summary View
+"Meeting Summary" = "Meeting Summary";
+"Template" = "Template";
+"Custom" = "Custom";
+"Generate Summary" = "Generate Summary";
+"No Summary" = "No Summary";
+"Select a template and click 'Generate Summary'" = "Select a template and click 'Generate Summary'";
+
+// MARK: - Settings Tabs
+"General" = "General";
+"API Keys" = "API Keys";
+"Tools" = "Tools";
+"Templates" = "Templates";
+
+// MARK: - General Settings
+"Whisper Model" = "Whisper Model";
+"Default Model" = "Default Model";
+"Chunk Duration:" = "Chunk Duration:";
+"Duration of each audio chunk for processing. Smaller = less memory, more overhead." = "Duration of each audio chunk for processing. Smaller = less memory, more overhead.";
+"Overlap:" = "Overlap:";
+"Overlap between chunks to prevent word splitting at boundaries." = "Overlap between chunks to prevent word splitting at boundaries.";
+"Default Target Language" = "Default Target Language";
+
+// MARK: - API Keys Settings
+"Translation API Keys" = "Translation API Keys";
+"TTS API Keys" = "TTS API Keys";
+"Claude CLI" = "Claude CLI";
+"Claude" = "Claude";
+"Uses system Claude CLI" = "Uses system Claude CLI";
+"Claude CLI uses your existing authentication. No API key needed." = "Claude CLI uses your existing authentication. No API key needed.";
+"Not set" = "Not set";
+"API Key" = "API Key";
+"Save Changes" = "Save Changes";
+
+// MARK: - Tools Settings
+"Required Tools" = "Required Tools";
+"Audio extraction from video files" = "Audio extraction from video files";
+"YouTube video/audio download" = "YouTube video/audio download";
+"Translation and summary generation" = "Translation and summary generation";
+"Install via Homebrew" = "Install via Homebrew";
+"Installed" = "Installed";
+"Not Found" = "Not Found";
+"Install Log" = "Install Log";
+
+// MARK: - Template Editor
+"Built-in" = "Built-in";
+"Select a Template" = "Select a Template";
+"Template Details" = "Template Details";
+"Name" = "Name";
+"Description" = "Description";
+"Sections (comma separated)" = "Sections (comma separated)";
+"Sections" = "Sections";
+"System Prompt" = "System Prompt";
+"New Template" = "New Template";
+"Custom meeting template" = "Custom meeting template";
+
+// MARK: - TTS Settings
+"Default TTS Provider" = "Default TTS Provider";
+"Default Voice" = "Default Voice";
+"Edge TTS is free and requires no API key. Fish Audio and MiniMax require API keys configured in the API Keys tab." = "Edge TTS is free and requires no API key. Fish Audio and MiniMax require API keys configured in the API Keys tab.";
+"Edge TTS Voices" = "Edge TTS Voices";
+"Common voices:" = "Common voices:";
+"English Female" = "English Female";
+"English Male" = "English Male";
+"Chinese (TW) Female" = "Chinese (TW) Female";
+"Chinese (TW) Male" = "Chinese (TW) Male";
+"Chinese (CN) Female" = "Chinese (CN) Female";
+"Japanese Female" = "Japanese Female";
+"Korean Female" = "Korean Female";
+"French Female" = "French Female";
+"German Female" = "German Female";
+"Spanish Female" = "Spanish Female";
+
+// MARK: - Export Format displayName
+"SRT Subtitle" = "SRT Subtitle";
+"Word Document (.docx)" = "Word Document (.docx)";
+"Plain Text (.txt)" = "Plain Text (.txt)";
+"Markdown (.md)" = "Markdown (.md)";
+
+// MARK: - TTS Provider displayName
+"System (macOS)" = "System (macOS)";
+"Edge TTS" = "Edge TTS";
+"Fish Audio" = "Fish Audio";
+"MiniMax" = "MiniMax";
+
+// MARK: - Translation Provider displayName
+"OpenAI" = "OpenAI";
+"Google Gemini" = "Google Gemini";
+"DeepSeek" = "DeepSeek";
+"OpenRouter" = "OpenRouter";
+
+// MARK: - SupportedLanguage displayName
+"Auto Detect" = "Auto Detect";
+"English" = "English";
+
+// MARK: - Project Status displayName
+"Importing..." = "Importing...";
+"Extracting Audio..." = "Extracting Audio...";
+"Transcribing..." = "Transcribing...";
+"Completed" = "Completed";
+"Failed" = "Failed";
+
+// MARK: - Source Type displayName
+"Audio" = "Audio";
+"Video" = "Video";
+"YouTube" = "YouTube";
+
+// MARK: - ViewModel Status Messages
+"Preparing..." = "Preparing...";
+"Extracting audio..." = "Extracting audio...";
+"Downloading from YouTube..." = "Downloading from YouTube...";
+"Saving results..." = "Saving results...";
+"Preparing transcript…" = "Preparing transcript...";
+"Sending to Claude CLI…" = "Sending to Claude CLI...";
+"Generating summary…" = "Generating summary...";
+
+// MARK: - ViewModel Error Messages
+"No text to speak." = "No text to speak.";
+"No speakable text." = "No speakable text.";
+"No transcript segments to summarize." = "No transcript segments to summarize.";
+"No segments to translate." = "No segments to translate.";
+"No source file specified for this project." = "No source file specified for this project.";

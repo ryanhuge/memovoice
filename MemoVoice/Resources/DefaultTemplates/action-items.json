@@ -1,0 +1,9 @@
+{
+    "id": "00000000-0000-0000-0000-000000000002",
+    "name": "Action Items",
+    "description": "Extract action items with owners and deadlines",
+    "systemPrompt": "You are an action item extractor. Given the following meeting transcript, identify all action items. For each item, list: the task description, the person responsible (if mentioned), and the deadline (if mentioned). Format as a numbered list. Output in the same language as the transcript.",
+    "sections": ["Action Items"],
+    "isBuiltIn": true,
+    "createdAt": "2026-03-07T00:00:00Z"
+}

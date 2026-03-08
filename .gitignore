@@ -1,0 +1,38 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+*.xcscmblueprint
+xcuserdata/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.pins
+Package.resolved
+
+# macOS
+.DS_Store
+*.dSYM.zip
+*.dSYM
+
+# Archives
+*.xcarchive
+
+# Misc
+*.hmap
+*.ipa
+*.playground/
+timeline.xctimeline
+playground.xcworkspace
+
+# App specific
+*.app
+
+# Profiling
+*.profraw
+
+# Test files
+test_*.swift
+project.yml

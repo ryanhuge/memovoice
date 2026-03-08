@@ -1,0 +1,234 @@
+/* ============================================================
+   MemoVoice — 繁體中文本地化
+   ============================================================ */
+
+// MARK: - 通用
+"Cancel" = "取消";
+"Done" = "完成";
+"Delete" = "刪除";
+"Save" = "儲存";
+"Copy" = "複製";
+"Export" = "匯出";
+"Retry" = "重試";
+"Set" = "設定";
+"Edit" = "編輯";
+"Use" = "使用";
+
+// MARK: - 歡迎畫面
+"MemoVoice" = "MemoVoice";
+"Local speech-to-text transcription\npowered by Whisper AI" = "本地語音轉文字\n由 Whisper AI 驅動";
+"Transcribe audio & video files" = "轉錄音訊與影片檔案";
+"Multi-language recognition" = "多語言辨識";
+"One-click translation" = "一鍵翻譯";
+"YouTube URL support" = "支援 YouTube 連結";
+"Export to SRT, DOCX, TXT, Markdown" = "匯出為 SRT、DOCX、TXT、Markdown";
+"Text-to-speech playback" = "文字轉語音朗讀";
+"AI meeting summaries" = "AI 會議摘要";
+"Import File" = "匯入檔案";
+
+// MARK: - 側邊欄
+"No Projects" = "沒有專案";
+"Import an audio or video file to get started." = "匯入音訊或影片檔案以開始使用。";
+"Projects" = "專案";
+
+// MARK: - 內容視圖（選單）
+"Import File / URL" = "匯入檔案 / 網址";
+"Record Audio" = "錄音";
+"New Project" = "新增專案";
+
+// MARK: - 匯入視圖
+"New Transcription" = "新增轉錄";
+"Input Source" = "輸入來源";
+"Audio/Video File" = "音訊/影片檔案";
+"YouTube URL" = "YouTube 網址";
+"Project Title" = "專案名稱";
+"Language" = "語言";
+"Model" = "模型";
+"Start Transcription" = "開始轉錄";
+"Change" = "更換";
+"Drag & drop or click to select" = "拖放或點擊以選擇檔案";
+"Supports: MP3, WAV, M4A, FLAC, MP4, MOV, MKV" = "支援格式：MP3、WAV、M4A、FLAC、MP4、MOV、MKV";
+"Paste YouTube URL here..." = "在此貼上 YouTube 網址⋯";
+"Valid YouTube URL" = "有效的 YouTube 網址";
+"Invalid YouTube URL" = "無效的 YouTube 網址";
+
+// MARK: - 模型名稱
+"Tiny (~75MB)" = "Tiny（~75MB）";
+"Base (~140MB)" = "Base（~140MB）";
+"Small (~466MB)" = "Small（~466MB）";
+"Medium (~1.5GB)" = "Medium（~1.5GB）";
+"Large V3 (~2.9GB)" = "Large V3（~2.9GB）";
+"Large V3 Turbo (~1.6GB)" = "Large V3 Turbo（~1.6GB）";
+"Tiny (~75MB, fastest)" = "Tiny（~75MB，最快）";
+"Large V3 (~2.9GB, most accurate)" = "Large V3（~2.9GB，最精確）";
+"Large V3 Turbo (~1.6GB, recommended)" = "Large V3 Turbo（~1.6GB，推薦）";
+
+// MARK: - 錄音視圖
+"Press the button to start recording" = "按下按鈕開始錄音";
+"Apple Live Transcription" = "Apple 即時轉錄";
+"Whisper Model" = "Whisper 模型";
+"Save & Transcribe" = "儲存並轉錄";
+
+// MARK: - YouTube 匯入
+"Downloading from YouTube" = "正在從 YouTube 下載";
+"Preparing download..." = "準備下載中⋯";
+"Starting download..." = "開始下載⋯";
+"Download" = "下載";
+
+// MARK: - 轉錄視圖（工具列）
+"Translation" = "翻譯";
+"Toggle translation view" = "切換翻譯視圖";
+"Read Aloud" = "朗讀";
+"Text-to-speech" = "文字轉語音";
+"Summary" = "摘要";
+"Generate meeting summary" = "產生會議摘要";
+"Export transcript" = "匯出轉錄內容";
+"Transcription Failed" = "轉錄失敗";
+"An unknown error occurred." = "發生未知錯誤。";
+
+// MARK: - 段落列表
+"Search transcript..." = "搜尋轉錄內容⋯";
+
+// MARK: - 翻譯控制列
+"Translate to" = "翻譯為";
+"Provider" = "提供者";
+"Translating…" = "翻譯中⋯";
+"Translate All" = "全部翻譯";
+"Translated to: %@" = "已翻譯為：%@";
+
+// MARK: - TTS 控制
+"TTS" = "語音朗讀";
+"Voice" = "語音";
+"Source" = "來源";
+"Original" = "原文";
+"Translated" = "譯文";
+"Speak" = "播放";
+"Stop" = "停止";
+
+// MARK: - 匯出
+"Export Transcript" = "匯出轉錄內容";
+"Include timecodes" = "包含時間碼";
+"Include translation" = "包含翻譯";
+
+// MARK: - 會議摘要視圖
+"Meeting Summary" = "會議摘要";
+"Template" = "模板";
+"Custom" = "自訂";
+"Generate Summary" = "產生摘要";
+"No Summary" = "尚無摘要";
+"Select a template and click 'Generate Summary'" = "選擇模板並點擊「產生摘要」";
+
+// MARK: - 設定分頁
+"General" = "一般";
+"API Keys" = "API 金鑰";
+"Tools" = "工具";
+"Templates" = "模板";
+
+// MARK: - 一般設定
+"Whisper Model" = "Whisper 模型";
+"Default Model" = "預設模型";
+"Chunk Duration:" = "分塊時長：";
+"Duration of each audio chunk for processing. Smaller = less memory, more overhead." = "每個音訊分塊的處理時長。較短 = 較少記憶體，較多負擔。";
+"Overlap:" = "重疊：";
+"Overlap between chunks to prevent word splitting at boundaries." = "分塊之間的重疊時間，以防止斷詞。";
+"Default Target Language" = "預設目標語言";
+
+// MARK: - API 金鑰設定
+"Translation API Keys" = "翻譯 API 金鑰";
+"TTS API Keys" = "語音朗讀 API 金鑰";
+"Claude CLI" = "Claude CLI";
+"Claude" = "Claude";
+"Uses system Claude CLI" = "使用系統 Claude CLI";
+"Claude CLI uses your existing authentication. No API key needed." = "Claude CLI 使用您現有的驗證，無需 API 金鑰。";
+"Not set" = "未設定";
+"API Key" = "API 金鑰";
+"Save Changes" = "儲存變更";
+
+// MARK: - 工具設定
+"Required Tools" = "必要工具";
+"Audio extraction from video files" = "從影片檔案擷取音訊";
+"YouTube video/audio download" = "YouTube 影片/音訊下載";
+"Translation and summary generation" = "翻譯與摘要產生";
+"Install via Homebrew" = "透過 Homebrew 安裝";
+"Installed" = "已安裝";
+"Not Found" = "未找到";
+"Install Log" = "安裝記錄";
+
+// MARK: - 模板編輯器
+"Built-in" = "內建";
+"Select a Template" = "選擇模板";
+"Template Details" = "模板詳細資訊";
+"Name" = "名稱";
+"Description" = "描述";
+"Sections (comma separated)" = "段落（以逗號分隔）";
+"Sections" = "段落";
+"System Prompt" = "系統提示詞";
+"New Template" = "新模板";
+"Custom meeting template" = "自訂會議模板";
+
+// MARK: - TTS 設定
+"Default TTS Provider" = "預設語音朗讀提供者";
+"Default Voice" = "預設語音";
+"Edge TTS is free and requires no API key. Fish Audio and MiniMax require API keys configured in the API Keys tab." = "Edge TTS 免費且無需 API 金鑰。Fish Audio 和 MiniMax 需要在 API 金鑰分頁中設定金鑰。";
+"Edge TTS Voices" = "Edge TTS 語音";
+"Common voices:" = "常用語音：";
+"English Female" = "英語女聲";
+"English Male" = "英語男聲";
+"Chinese (TW) Female" = "中文（台灣）女聲";
+"Chinese (TW) Male" = "中文（台灣）男聲";
+"Chinese (CN) Female" = "中文（中國）女聲";
+"Japanese Female" = "日語女聲";
+"Korean Female" = "韓語女聲";
+"French Female" = "法語女聲";
+"German Female" = "德語女聲";
+"Spanish Female" = "西班牙語女聲";
+
+// MARK: - 匯出格式 displayName
+"SRT Subtitle" = "SRT 字幕";
+"Word Document (.docx)" = "Word 文件（.docx）";
+"Plain Text (.txt)" = "純文字（.txt）";
+"Markdown (.md)" = "Markdown（.md）";
+
+// MARK: - TTS 提供者 displayName
+"System (macOS)" = "系統（macOS）";
+"Edge TTS" = "Edge TTS";
+"Fish Audio" = "Fish Audio";
+"MiniMax" = "MiniMax";
+
+// MARK: - 翻譯提供者 displayName
+"OpenAI" = "OpenAI";
+"Google Gemini" = "Google Gemini";
+"DeepSeek" = "DeepSeek";
+"OpenRouter" = "OpenRouter";
+
+// MARK: - 支援語言 displayName
+"Auto Detect" = "自動偵測";
+"English" = "English";
+
+// MARK: - 專案狀態 displayName
+"Importing..." = "匯入中⋯";
+"Extracting Audio..." = "擷取音訊中⋯";
+"Transcribing..." = "轉錄中⋯";
+"Completed" = "已完成";
+"Failed" = "失敗";
+
+// MARK: - 來源類型 displayName
+"Audio" = "音訊";
+"Video" = "影片";
+"YouTube" = "YouTube";
+
+// MARK: - ViewModel 狀態訊息
+"Preparing..." = "準備中⋯";
+"Extracting audio..." = "擷取音訊中⋯";
+"Downloading from YouTube..." = "正在從 YouTube 下載⋯";
+"Saving results..." = "儲存結果中⋯";
+"Preparing transcript…" = "準備轉錄內容⋯";
+"Sending to Claude CLI…" = "傳送至 Claude CLI⋯";
+"Generating summary…" = "產生摘要中⋯";
+
+// MARK: - ViewModel 錯誤訊息
+"No text to speak." = "沒有可朗讀的文字。";
+"No speakable text." = "沒有可朗讀的文字。";
+"No transcript segments to summarize." = "沒有可摘要的轉錄段落。";
+"No segments to translate." = "沒有可翻譯的段落。";
+"No source file specified for this project." = "此專案未指定來源檔案。";

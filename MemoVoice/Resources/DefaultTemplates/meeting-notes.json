@@ -1,0 +1,9 @@
+{
+    "id": "00000000-0000-0000-0000-000000000001",
+    "name": "Meeting Notes",
+    "description": "Standard meeting notes with key points and action items",
+    "systemPrompt": "You are a meeting notes assistant. Given the following transcript, create structured meeting notes with these sections: Summary, Key Discussion Points, Decisions Made, Action Items (with assignees if mentioned), and Next Steps. Be concise but thorough. Use bullet points. Output in the same language as the transcript.",
+    "sections": ["Summary", "Key Discussion Points", "Decisions Made", "Action Items", "Next Steps"],
+    "isBuiltIn": true,
+    "createdAt": "2026-03-07T00:00:00Z"
+}
