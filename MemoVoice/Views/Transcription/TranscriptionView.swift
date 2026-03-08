@@ -192,6 +192,31 @@ struct TranscriptionView: View {
                 status: viewModel.statusMessage.isEmpty ? project.status.displayName : viewModel.statusMessage,
                 progress: project.progress
             )
+
+            // Pause / Resume / Cancel controls (only during transcription)
+            if viewModel.isTranscribing {
+                HStack(spacing: 16) {
+                    Button {
+                        if viewModel.isPaused {
+                            viewModel.resumeTranscription()
+                        } else {
+                            viewModel.pauseTranscription()
+                        }
+                    } label: {
+                        Label(
+                            viewModel.isPaused ? String(localized: "Resume") : String(localized: "Pause"),
+                            systemImage: viewModel.isPaused ? "play.fill" : "pause.fill"
+                        )
+                    }
+
+                    Button(role: .destructive) {
+                        viewModel.cancelTranscription()
+                    } label: {
+                        Label(String(localized: "Cancel"), systemImage: "xmark")
+                    }
+                }
+                .buttonStyle(.bordered)
+            }
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -17,6 +17,9 @@ struct SettingsView: View {
 
             TTSSettingsView()
                 .tabItem { Label("TTS", systemImage: "speaker.wave.3") }
+
+            StorageSettingsView()
+                .tabItem { Label("Storage", systemImage: "internaldrive") }
         }
         .frame(width: 600, height: 450)
     }

@@ -23,6 +23,7 @@
 		332CDF52D95F1D37248CC9D0 /* TranslationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121F7C33E71AEF6EA78F1A42 /* TranslationViewModel.swift */; };
 		346D2B68E59BA0B23486D084 /* TemplatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6510EA3D97E98A145FFB71DB /* TemplatePickerView.swift */; };
 		3B92D48725AF0171424426E4 /* TTSSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4727963C9CBB84FB452C1D /* TTSSettingsView.swift */; };
+		4D7A3F21B8E9C5D034F16A2E /* StorageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F31D94A6B7E2F508D4C3B1 /* StorageSettingsView.swift */; };
 		3DEDFDFD73E8C84286E28623 /* SegmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE2869BE6A0AE56B2529D1D /* SegmentListView.swift */; };
 		3FBE39737681ACE16AB5FCA1 /* TTSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B739F3E5BD86752F0E95F8 /* TTSProvider.swift */; };
 		44876DF428D238ECDEF93813 /* AudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8E082C3C10871A9DDB172D /* AudioPlayerViewModel.swift */; };
@@ -144,6 +145,7 @@
 		A97EB4CDBA8F89B0A183BA88 /* WhisperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperService.swift; sourceTree = "<group>"; };
 		AD3A7BC7ACD3E3DC563C50B3 /* ExportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSheet.swift; sourceTree = "<group>"; };
 		AE4727963C9CBB84FB452C1D /* TTSSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSSettingsView.swift; sourceTree = "<group>"; };
+		C8F31D94A6B7E2F508D4C3B1 /* StorageSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSettingsView.swift; sourceTree = "<group>"; };
 		AFEBC863BA0A4DB0DD3C82C2 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		BA9F5FE2CD32C71CFC6A8430 /* YouTubeImportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeImportSheet.swift; sourceTree = "<group>"; };
 		BB36C370E33CB5304407542E /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				3C1A78F55D24A5F9256DB734 /* APIKeysSettingsView.swift */,
 				BB36C370E33CB5304407542E /* GeneralSettingsView.swift */,
 				F44349E0B8F66424456BFD50 /* SettingsView.swift */,
+				C8F31D94A6B7E2F508D4C3B1 /* StorageSettingsView.swift */,
 				955241DBCD1C3EFDE59F4E91 /* TemplateEditorView.swift */,
 				C0EBBE0E19DE5AFD68D83FAE /* ToolsSettingsView.swift */,
 				AE4727963C9CBB84FB452C1D /* TTSSettingsView.swift */,
@@ -624,6 +627,7 @@
 				3DEDFDFD73E8C84286E28623 /* SegmentListView.swift in Sources */,
 				7CBCD1A34413CD51EB22CF2B /* SegmentRowView.swift in Sources */,
 				4CFE8F63CB9FF2964FE09C1C /* SettingsView.swift in Sources */,
+				4D7A3F21B8E9C5D034F16A2E /* StorageSettingsView.swift in Sources */,
 				75793C338D6471F819D5E636 /* SidebarView.swift in Sources */,
 				595C14820242305F06F022C1 /* SummaryViewModel.swift in Sources */,
 				8C19BC1F1F342D6057D49CEA /* SystemTTSService.swift in Sources */,

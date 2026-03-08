@@ -1,5 +1,28 @@
 import Foundation
 import WhisperKit
+import CoreML
+import os
+
+/// Thread-safe flags for controlling transcription from @Sendable callbacks
+final class TranscriptionControl: Sendable {
+    private let _isPaused = OSAllocatedUnfairLock(initialState: false)
+    private let _isCancelled = OSAllocatedUnfairLock(initialState: false)
+
+    var isPaused: Bool {
+        get { _isPaused.withLock { $0 } }
+        set { _isPaused.withLock { $0 = newValue } }
+    }
+
+    var isCancelled: Bool {
+        get { _isCancelled.withLock { $0 } }
+        set { _isCancelled.withLock { $0 = newValue } }
+    }
+
+    func reset() {
+        isPaused = false
+        isCancelled = false
+    }
+}
 
 @Observable
 @MainActor
@@ -7,6 +30,10 @@ final class WhisperService {
     static let shared = WhisperService()
 
     var isModelLoaded = false
+    var isPaused = false
+    var isCancelled = false
+
+    let control = TranscriptionControl()
 
     private var whisperKit: WhisperKit?
     private var loadedModelName: String?
@@ -19,6 +46,7 @@ final class WhisperService {
     enum WhisperError: LocalizedError {
         case modelNotLoaded
         case transcriptionFailed(String)
+        case cancelled
 
         var errorDescription: String? {
             switch self {
@@ -26,8 +54,27 @@ final class WhisperService {
                 "Whisper model is not loaded. Please download a model first."
             case .transcriptionFailed(let msg):
                 "Transcription failed: \(msg)"
+            case .cancelled:
+                "Transcription was cancelled."
             }
         }
+    }
+
+    func pauseTranscription() {
+        isPaused = true
+        control.isPaused = true
+    }
+
+    func resumeTranscription() {
+        isPaused = false
+        control.isPaused = false
+    }
+
+    func cancelTranscription() {
+        isCancelled = true
+        isPaused = false
+        control.isCancelled = true
+        control.isPaused = false
     }
 
     /// Download and load a model with progress reporting.
@@ -76,8 +123,16 @@ final class WhisperService {
 
         onProgress(String(localized: "Loading model..."), 1.0)
 
-        // Load WhisperKit from the model folder (skip re-download)
-        let config = WhisperKitConfig(modelFolder: modelFolder, download: false)
+        // Load WhisperKit from the model folder with Neural Engine acceleration
+        let computeOptions = ModelComputeOptions(
+            audioEncoderCompute: .cpuAndNeuralEngine,
+            textDecoderCompute: .cpuAndNeuralEngine
+        )
+        let config = WhisperKitConfig(
+            modelFolder: modelFolder,
+            computeOptions: computeOptions,
+            download: false
+        )
         whisperKit = try await WhisperKit(config)
         loadedModelName = modelName
         isModelLoaded = true
@@ -92,7 +147,8 @@ final class WhisperService {
         return FileManager.default.fileExists(atPath: cachedPath)
     }
 
-    /// Transcribe an audio file with real-time progress via WhisperKit callback
+    /// Transcribe an audio file with real-time progress via WhisperKit callback.
+    /// Supports pause/resume and cancellation.
     func transcribe(
         audioURL: URL,
         language: String? = nil,
@@ -102,11 +158,20 @@ final class WhisperService {
             throw WhisperError.modelNotLoaded
         }
 
+        // Reset control flags
+        isPaused = false
+        isCancelled = false
+        control.reset()
+
         nonisolated(unsafe) let kit = whisperKit
+        let ctl = control
 
         let options = DecodingOptions(
             language: language,
-            wordTimestamps: true,
+            usePrefillPrompt: true,
+            usePrefillCache: true,
+            wordTimestamps: false,
+            concurrentWorkerCount: 4,
             chunkingStrategy: .vad
         )
 
@@ -115,10 +180,29 @@ final class WhisperService {
             audioPath: audioURL.path,
             decodeOptions: options
         ) { @Sendable _ in
-            // Report progress from WhisperKit's internal Progress object
+            // Cancel: return false to stop transcription
+            if ctl.isCancelled {
+                return false
+            }
+
+            // Pause: block until resumed
+            while ctl.isPaused && !ctl.isCancelled {
+                Thread.sleep(forTimeInterval: 0.1)
+            }
+
+            if ctl.isCancelled {
+                return false
+            }
+
+            // Report progress
             let fraction = kit.progress.fractionCompleted
             progressRef(fraction)
             return nil // nil = continue transcription
+        }
+
+        // Check if cancelled after transcription returns
+        if control.isCancelled {
+            throw WhisperError.cancelled
         }
 
         var segments: [TranscriptionSegment] = []

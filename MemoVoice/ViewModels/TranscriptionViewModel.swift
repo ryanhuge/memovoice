@@ -6,12 +6,30 @@ import Observation
 @MainActor
 final class TranscriptionViewModel {
     var isTranscribing = false
+    var isPaused = false
     var transcriptionProgress: Double = 0
     var statusMessage = ""
     var errorMessage: String?
 
     private let whisperService = WhisperService.shared
     private let ffmpegService = FFmpegService()
+
+    func pauseTranscription() {
+        isPaused = true
+        whisperService.pauseTranscription()
+        statusMessage = String(localized: "Paused")
+    }
+
+    func resumeTranscription() {
+        isPaused = false
+        whisperService.resumeTranscription()
+        statusMessage = String(localized: "Transcribing...")
+    }
+
+    func cancelTranscription() {
+        isPaused = false
+        whisperService.cancelTranscription()
+    }
 
     /// Start the full transcription pipeline for a project
     func startTranscription(project: TranscriptionProject, modelContext: ModelContext) async {
@@ -97,6 +115,12 @@ final class TranscriptionViewModel {
             project.updatedAt = Date()
             try? modelContext.save()
 
+        } catch WhisperService.WhisperError.cancelled {
+            // User cancelled — reset to importable state
+            project.status = .importing
+            project.progress = 0
+            statusMessage = String(localized: "Cancelled")
+            try? modelContext.save()
         } catch {
             project.status = .failed
             project.errorMessage = error.localizedDescription
@@ -105,6 +129,7 @@ final class TranscriptionViewModel {
         }
 
         isTranscribing = false
+        isPaused = false
     }
 
     enum TranscriptionError: LocalizedError {
