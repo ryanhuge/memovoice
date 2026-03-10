@@ -205,6 +205,7 @@ final class WhisperService {
             language: language,
             usePrefillPrompt: true,
             usePrefillCache: true,
+            skipSpecialTokens: true,
             wordTimestamps: false,
             concurrentWorkerCount: 4,
             chunkingStrategy: .vad
@@ -247,7 +248,7 @@ final class WhisperService {
                     index: segments.count,
                     startTime: Double(segment.start),
                     endTime: Double(segment.end),
-                    text: segment.text.trimmingCharacters(in: .whitespaces),
+                    text: Self.cleanText(segment.text),
                     confidence: segment.avgLogprob
                 )
                 segments.append(seg)
@@ -255,5 +256,11 @@ final class WhisperService {
         }
 
         return segments
+    }
+
+    /// Strip Whisper special tokens like <|0.00|>, <|en|>, <|notimestamps|>, etc.
+    private static func cleanText(_ text: String) -> String {
+        text.replacingOccurrences(of: "<\\|[^|]*\\|>", with: "", options: .regularExpression)
+            .trimmingCharacters(in: .whitespaces)
     }
 }
