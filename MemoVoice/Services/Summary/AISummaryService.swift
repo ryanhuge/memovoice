@@ -6,7 +6,7 @@ private let logger = Logger(subsystem: "com.memovoice", category: "AISummary")
 final class AISummaryService: Sendable {
     private let claudePath: String
 
-    init(claudePath: String = "/opt/homebrew/bin/claude") {
+    init(claudePath: String = AppState.shared.claudePath) {
         self.claudePath = claudePath
     }
 

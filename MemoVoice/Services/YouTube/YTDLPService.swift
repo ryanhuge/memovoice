@@ -20,7 +20,7 @@ final class YTDLPService {
         }
     }
 
-    init(ytdlpPath: String = "/opt/homebrew/bin/yt-dlp") {
+    init(ytdlpPath: String = AppState.shared.ytdlpPath) {
         self.ytdlpPath = ytdlpPath
     }
 
@@ -33,6 +33,8 @@ final class YTDLPService {
         guard FileManager.default.isExecutableFile(atPath: ytdlpPath) else {
             throw YTDLPError.notInstalled
         }
+
+        progressCallback(0.05, "Starting YouTube download...")
 
         let outputTemplate = outputDirectory
             .appendingPathComponent("%(title)s.%(ext)s").path
@@ -55,6 +57,8 @@ final class YTDLPService {
             throw YTDLPError.downloadFailed(result.stderr)
         }
 
+        progressCallback(0.9, "Locating downloaded audio...")
+
         // Find the downloaded file
         let files = try FileManager.default.contentsOfDirectory(
             at: outputDirectory,
@@ -73,6 +77,7 @@ final class YTDLPService {
             throw YTDLPError.outputFileNotFound
         }
 
+        progressCallback(1.0, "Download complete.")
         return newestFile
     }
 

@@ -57,6 +57,33 @@ struct YouTubeImportSheet: View {
     private func startDownload() {
         isDownloading = true
         statusText = String(localized: "Starting download...")
-        // TODO: Implement with YTDLPService
+        progress = 0
+        errorMessage = nil
+
+        Task {
+            do {
+                let service = YTDLPService()
+                let audioURL = try await service.downloadAudio(
+                    from: url,
+                    to: FileManager.default.audioDirectory
+                ) { fraction, message in
+                    Task { @MainActor in
+                        progress = fraction
+                        statusText = String(localized: String.LocalizationValue(message))
+                    }
+                }
+
+                await MainActor.run {
+                    progress = 1
+                    onComplete(audioURL)
+                    dismiss()
+                }
+            } catch {
+                await MainActor.run {
+                    errorMessage = error.localizedDescription
+                    isDownloading = false
+                }
+            }
+        }
     }
 }

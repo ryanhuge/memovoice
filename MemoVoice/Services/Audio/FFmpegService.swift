@@ -17,7 +17,7 @@ final class FFmpegService: Sendable {
         }
     }
 
-    init(ffmpegPath: String = "/opt/homebrew/bin/ffmpeg") {
+    init(ffmpegPath: String = AppState.shared.ffmpegPath) {
         self.ffmpegPath = ffmpegPath
     }
 
